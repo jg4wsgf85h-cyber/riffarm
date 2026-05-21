@@ -768,13 +768,29 @@ function handleMediaUpload(event) {
 
       localStorage.setItem('uploadedVideo', e.target.result);
 
-      alert('Vidéo uploadée ✅');
+      const video = document.createElement('video');
+video.src = e.target.result;
+video.controls = true;
+video.style.width = '100%';
+
+document.querySelector('.admin-img-area').innerHTML = '';
+document.querySelector('.admin-img-area').appendChild(video);
+
+alert('Vidéo uploadée ✅');
 
     } else if (file.type.startsWith('image/')) {
 
       localStorage.setItem('uploadedImage', e.target.result);
 
-      alert('Image uploadée ✅');
+      const img = document.createElement('img');
+img.src = e.target.result;
+img.style.width = '100%';
+img.style.borderRadius = '12px';
+
+document.querySelector('.admin-img-area').innerHTML = '';
+document.querySelector('.admin-img-area').appendChild(img);
+
+alert('Image uploadée ✅');
 
     }
 
