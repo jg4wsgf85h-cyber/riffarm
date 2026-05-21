@@ -701,7 +701,9 @@ function saveProduct(){
     }
     toast('✓ Produit modifié');
   } else {
-    products.push({id:nextId++,name,cat:document.getElementById('f-cat').value,grade:document.getElementById('f-grade').value,price,stock:document.getElementById('f-stock').value,texture:document.getElementById('f-texture').value||'—',color:document.getElementById('f-color').value||'—',origin:document.getElementById('f-origin').value||'Rif, Maroc',terps:terps.length?terps:['Naturel'],purity,arome,featured:document.getElementById('f-featured').checked});
+    products.push({id:nextId++,name, video: localStorage.getItem('uploadedVideo') || '',
+
+,cat:document.getElementById('f-cat').value,grade:document.getElementById('f-grade').value,price,stock:document.getElementById('f-stock').value,texture:document.getElementById('f-texture').value||'—',color:document.getElementById('f-color').value||'—',origin:document.getElementById('f-origin').value||'Rif, Maroc',terps:terps.length?terps:['Naturel'],purity,arome,featured:document.getElementById('f-featured').checked});
     toast('✦ Produit ajouté au catalogue');
   }
   resetForm();renderGrid();renderAdminList();renderFeatured();renderStats();
