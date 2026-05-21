@@ -393,7 +393,7 @@ console.log(order);
         <div class="admin-title" id="admin-form-title">Ajouter un produit</div>
         <div class="admin-sub">Remplissez les informations de la variété</div>
 
-        <div class="admin-img-area" onclick="toast('Upload image — intégrer avec Cloudinary')">
+        <div class="admin-img-area" onclick="document.getElementById('media-upload').click()"> 
           <div class="admin-img-ico"><i class="ti ti-photo-up"></i></div>
           <div class="admin-img-lbl">Photo / Vidéo du produit<br><span style="font-size:10px;color:var(--mu)">JPG · PNG · MP4 · MOV</span></div>
         </div>
@@ -744,6 +744,45 @@ document.querySelectorAll('.ni').forEach(n=>n.addEventListener('click',()=>{
 
 // Init
 renderFilters();renderGrid();
+</script>
+
+  <input 
+type="file" 
+id="media-upload" 
+accept="image/*,video/*" 
+style="display:none"
+onchange="handleMediaUpload(event)"
+>
+
+<script>
+function handleMediaUpload(event) {
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+
+    if (file.type.startsWith('video/')) {
+
+      localStorage.setItem('uploadedVideo', e.target.result);
+
+      alert('Vidéo uploadée ✅');
+
+    } else if (file.type.startsWith('image/')) {
+
+      localStorage.setItem('uploadedImage', e.target.result);
+
+      alert('Image uploadée ✅');
+
+    }
+
+  };
+
+  reader.readAsDataURL(file);
+}
+  
 </script>
 </body>
 </html>
